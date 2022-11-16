@@ -13,6 +13,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import me.daytonjwatson.ChestLock.Commands.lockCMD;
 import me.daytonjwatson.ChestLock.Config.Config;
 import me.daytonjwatson.ChestLock.Events.chestLock;
 
@@ -21,10 +22,10 @@ public class Main extends JavaPlugin {
 	public static Main instance;
 	
 	public File lockFile = new File(getDataFolder(), "locks.yml");
-	public YamlConfiguration locks = YamlConfiguration.loadConfiguration(instance.lockFile);
+	public YamlConfiguration locks = YamlConfiguration.loadConfiguration(this.lockFile);
 	
 	public HashMap<Player, UUID> givePermission = new HashMap<>();
-	public List<Player> makePublic = new ArrayList();
+	public List<Player> makePublic = new ArrayList<Player>();
 	
 	
 	@Override
@@ -32,6 +33,10 @@ public class Main extends JavaPlugin {
 		instance = this;
 		
 		getLogger().info("Successfully loaded.");
+		
+		loadCommands();
+		loadEvents();
+		loadFiles();
 	}
 	
 	@Override
@@ -40,7 +45,7 @@ public class Main extends JavaPlugin {
 	}
 	
 	public void loadCommands() {
-		
+		getCommand("chestlock").setExecutor(new lockCMD());
 	}
 	
 	public void loadEvents() {
@@ -53,7 +58,7 @@ public class Main extends JavaPlugin {
 		Config c = new Config(instance);
 		c.createConfig();
 		
-		if(!lockFile.exists()) {
+		if(!this.lockFile.exists()) {
 			saveLockFile();
 			getLogger().warning("locks.yml not found, creating one for you!");
 		}
@@ -61,7 +66,7 @@ public class Main extends JavaPlugin {
 	
 	public void saveLockFile() {
 		try {
-			locks.save(lockFile);
+			this.locks.save(lockFile);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

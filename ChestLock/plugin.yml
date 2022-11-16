@@ -3,7 +3,7 @@ author: DaytonJWatson
 description: Easy Chestlock
 version: 1.0.0
 api-version: 1.19
-main: me.daytonjwatson.SoftStop.Main
+main: me.daytonjwatson.ChestLock.Main
 commands:
   chestlock:
     description: Chestlock command
