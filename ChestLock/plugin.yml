@@ -1,7 +1,7 @@
 name: ChestLock
 author: DaytonJWatson
 description: Easy Chestlock
-version: 1.0.0
+version: 0.1.4
 api-version: 1.19
 main: me.daytonjwatson.ChestLock.Main
 commands:
