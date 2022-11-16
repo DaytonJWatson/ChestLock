@@ -1,0 +1,9 @@
+name: ChestLock
+author: DaytonJWatson
+description: Easy Chestlock
+version: 1.0.0
+api-version: 1.19
+main: me.daytonjwatson.SoftStop.Main
+commands:
+  chestlock:
+    description: Chestlock command
